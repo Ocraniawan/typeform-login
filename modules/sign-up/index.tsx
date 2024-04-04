@@ -2,6 +2,25 @@
 import React, { useState } from "react";
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 
+const listOptions = [
+  {
+    label: "Get useful tips, inspiration, and offers via e-communication.",
+    name: "marketing",
+    link: false,
+  },
+  {
+    label: "Tailor Typeform to my needs based on my activity.",
+    name: "taylor-typeform",
+    link: true,
+  },
+  {
+    label:
+      "Enrich my data with select third parties for more relevant content.",
+    name: "third-party",
+    link: true,
+  },
+];
+
 export default function SignUp() {
   const [inputTypePassword, setInputTypePassword] = useState("password");
 
@@ -126,6 +145,85 @@ export default function SignUp() {
                   </a>
                   .
                 </span>
+              </div>
+              {/* option list */}
+              <div className="pt-2 pb-[15px] pl-[30px]">
+                {/* options */}
+                <div className="flex items-center cursor-pointer justify-between h-8">
+                  <p className="text-sm">See Options</p>
+                  <span className="transition-all delay-300 ease-out rotate-0">
+                    <svg
+                      width="12"
+                      height="7"
+                      viewBox="0 0 12 7"
+                      fill="currentColor"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        clipRule="evenodd"
+                        d="M6.00008 2.94976L8.87876 5.82845C9.65981 6.6095 10.9261 6.60949 11.7072 5.82844L6.00008 0.121338L0.292969 5.82844C1.07402 6.60949 2.34035 6.60949 3.1214 5.82844L6.00008 2.94976Z"
+                      ></path>
+                    </svg>
+                  </span>
+                </div>
+                {/* list */}
+                <div className=" overflow-hidden transition duration-200 ease-in">
+                  <div className="overflow-auto">
+                    {listOptions.map(
+                      (
+                        list: { label: string; name: string; link: boolean },
+                        index: any
+                      ) => (
+                        <div key={index} className="">
+                          <div className="text-sm mb-2">
+                            <label className="leading-5 text-[#191919]">
+                              {list.label}
+                              {list.link && (
+                                <a href="#" className=" text-[#5e5e5e] text-sm">
+                                  {" "}
+                                  See Privacy Policy
+                                </a>
+                              )}
+                            </label>
+                          </div>
+                          <div className="flex items-center mb-3">
+                            <div>
+                              <label className="items-center cursor-pointer inline-flex">
+                                <input
+                                  id="marketing-yes"
+                                  name={list.name}
+                                  type="radio"
+                                  className="bg-white border border-[#c2c2c1] checked:border-[#191919] checked:border-[6px] w-5 h-5 cursor-pointer rounded-[50%] outline-0 appearance-none"
+                                />
+                                <div className="ml-3">
+                                  <p className="text-sm mr-4 pt-[2px]">Yes</p>
+                                </div>
+                              </label>
+                            </div>
+                            <div>
+                              <label className="items-center cursor-pointer inline-flex">
+                                <input
+                                  id="marketing-no"
+                                  name={list.name}
+                                  type="radio"
+                                  className="bg-white border border-[#c2c2c1] checked:border-[#191919] checked:border-[6px] w-5 h-5 cursor-pointer rounded-[50%] outline-0 appearance-none"
+                                />
+                                <div className="ml-3">
+                                  <p className="text-sm mr-4 pt-[2px]">No</p>
+                                </div>
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+                      )
+                    )}
+                    <p className="text-[#7f7f7f] text-sm ">
+                      You can update your preferences in your Profile at any
+                      time
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
             <div className="flex justify-center">
