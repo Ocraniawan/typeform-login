@@ -4,5 +4,11 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
     "./modules/**/*.{js,ts,jsx,tsx}",
   ],
-  // ... other Tailwind configuration options
+  theme: {
+    extend: {
+      transitionProperty: {
+        "max-height": "max-height",
+      },
+    },
+  },
 };

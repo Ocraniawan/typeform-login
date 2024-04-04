@@ -23,6 +23,7 @@ const listOptions = [
 
 export default function SignUp() {
   const [inputTypePassword, setInputTypePassword] = useState("password");
+  const [openOptions, setOpenOptions] = useState(false);
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -149,9 +150,16 @@ export default function SignUp() {
               {/* option list */}
               <div className="pt-2 pb-[15px] pl-[30px]">
                 {/* options */}
-                <div className="flex items-center cursor-pointer justify-between h-8">
+                <div
+                  className="flex items-center cursor-pointer justify-between h-8"
+                  onClick={() => setOpenOptions(!openOptions)}
+                >
                   <p className="text-sm">See Options</p>
-                  <span className="transition-all delay-300 ease-out rotate-0">
+                  <span
+                    className={`transition-all delay-300 ease-out ${
+                      openOptions ? "rotate-180" : "rotate-0"
+                    }`}
+                  >
                     <svg
                       width="12"
                       height="7"
@@ -168,7 +176,11 @@ export default function SignUp() {
                   </span>
                 </div>
                 {/* list */}
-                <div className=" overflow-hidden transition duration-200 ease-in">
+                <div
+                  className={`overflow-hidden transition-[max-height] delay-200 ease-in ${
+                    openOptions ? "max-h-0" : "max-h-[400px]"
+                  } `}
+                >
                   <div className="overflow-auto">
                     {listOptions.map(
                       (
