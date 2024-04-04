@@ -1,6 +1,14 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
+import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 
 export default function SignUp() {
+  const [inputTypePassword, setInputTypePassword] = useState("password");
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+  };
+
   return (
     <div className="flex flex-col justify-center justify-self-center items-center max-w-[250px] grid-area-2">
       <div className="flex items-center justify-center h-[80px]">
@@ -39,6 +47,47 @@ export default function SignUp() {
       <h2 className="text-center text-2xl font-[200] text-[#5e5e5e] mb-6 leading-9">
         Get better data with conversational forms, surveys, quizzes & more.
       </h2>
+      <div className="w-full">
+        <main className="block">
+          <form onSubmit={handleSubmit}>
+            {/* input */}
+            <div>
+              <div className="mb-[15px]">
+                <span className="w-full h-10 inline-block border rounded-[3px] border-[#c2c2c1]">
+                  <input
+                    className=" w-full h-full m-0 py-[6px] px-2 rounded-[3px] text-base leading-4 border-none"
+                    placeholder="Email"
+                    type="email"
+                  />
+                </span>
+              </div>
+              <div className="mb-[15px]">
+                <div className="flex w-full h-10 border rounded-[3px] border-[#c2c2c1]">
+                  <input
+                    className="w-full h-full m-0 py-[6px] px-2 rounded-[3px] text-base leading-4 border-none"
+                    placeholder="Password"
+                    type={inputTypePassword}
+                  />
+                  <button
+                    className="px-2 text-[#D2D5C4]"
+                    onClick={() =>
+                      setInputTypePassword(
+                        inputTypePassword === "password" ? "text" : "password"
+                      )
+                    }
+                  >
+                    {inputTypePassword === "password" ? (
+                      <IoIosEye />
+                    ) : (
+                      <IoIosEyeOff />
+                    )}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </main>
+      </div>
     </div>
   );
 }
