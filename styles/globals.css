@@ -46,3 +46,7 @@ a {
 .grid-rows-custom {
   grid-template-rows: [first] 52px [second] auto [third] 52px;
 }
+
+.bg-check-white-svg {
+  background: url("/assets/white-checked.svg") 50% 4px no-repeat;
+}

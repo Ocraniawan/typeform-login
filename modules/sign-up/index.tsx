@@ -85,6 +85,56 @@ export default function SignUp() {
                 </div>
               </div>
             </div>
+            <div>
+              {/* check */}
+              <div className="flex text-sm mb-[15px] relative text-[#191919]">
+                <input
+                  type="checkbox"
+                  className="border h-[20px] w-[20px] absolute appearance-none rounded-[3px]
+                    shadow-[#1b1b1a]
+                   checked:bg-black bg-check-white-svg
+                    focus:ring-1 focus:ring-offset-2 focus:ring-white
+                    transition-colors duration-150 ease-in-out"
+                />
+                <span className=" pl-[30px]">
+                  {"I agree to Typeform’s "}
+                  <a
+                    rel="noopener"
+                    target="_blank"
+                    href="https://www.typeform.com/terms-service/"
+                    className="underline"
+                  >
+                    Terms of Service
+                  </a>
+                  {", "}
+                  <a
+                    rel="noopener"
+                    target="_blank"
+                    href="https://www.typeform.com/privacy-policy/"
+                    className="underline"
+                  >
+                    Privacy Policy
+                  </a>
+                  {" and "}
+                  <a
+                    rel="noopener"
+                    target="_blank"
+                    href="https://www.typeform.com/privacy-policy/"
+                    className="underline"
+                  >
+                    Data Processing Agreement
+                  </a>
+                  .
+                </span>
+              </div>
+            </div>
+            <div className="flex justify-center">
+              <input
+                type="submit"
+                value="Create my free account"
+                className="bg-[#191919] rounded-[3px] border-none text-white cursor-pointer text-[16px] h-10 p-0 w-full appearance-none"
+              />
+            </div>
           </form>
         </main>
       </div>
