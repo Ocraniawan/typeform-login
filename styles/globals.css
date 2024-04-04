@@ -18,3 +18,31 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+.flex-1-1-10 {
+  flex: 1 1 10%;
+}
+
+.grid-row-1 {
+  grid-row: first;
+}
+
+.grid-area-3-1 {
+  grid-area: third / first;
+}
+
+.grid-area-2 {
+  grid-area: second;
+}
+
+.grid-col-2 {
+  grid-column: second;
+}
+
+.grid-cols-custom {
+  grid-template-columns: [first] 0px [second] auto;
+}
+
+.grid-rows-custom {
+  grid-template-rows: [first] 52px [second] auto [third] 52px;
+}
