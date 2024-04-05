@@ -15,7 +15,7 @@ export default function Home() {
           <section className=" hidden lg:block bg-[#191919] flex-1 overflow-hidden relative flex-col m-h-[90vh] w-full p-0">
             <div className="flex flex-col items-center h-full w-full justify-center">
               <h1 className="text-white text-4xl mb-[35px] w-[366px] font-normal leading-[44px] text-center">
-                Sign Up <br /> and come on in
+                Sign up <br /> and come on in
               </h1>
               <div>
                 <picture>
