@@ -4,8 +4,8 @@
 
 @font-face {
   font-family: "apercu-pro";
-  font-weight: 400;
-  src: url("/assets/fonts/Apercu Mono.otf") format("otf");
+  font-weight: 300;
+  src: url("/assets/fonts/ApercuPro-Light.woff") format("woff");
 }
 
 * {
