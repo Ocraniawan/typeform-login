@@ -1,22 +1,28 @@
 import React, { useState } from "react";
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 
-const listOptions = [
+const initOptions = [
   {
     label: "Get useful tips, inspiration, and offers via e-communication.",
     name: "marketing",
     link: false,
+    yes: false,
+    no: false,
   },
   {
     label: "Tailor Typeform to my needs based on my activity.",
     name: "taylor-typeform",
     link: true,
+    yes: false,
+    no: false,
   },
   {
     label:
       "Enrich my data with select third parties for more relevant content.",
     name: "third-party",
     link: true,
+    yes: false,
+    no: false,
   },
 ];
 
@@ -36,7 +42,7 @@ export default function SignUp() {
   const [isSubmit, setIsSubmit] = useState(false);
 
   const [openOptions, setOpenOptions] = useState(false);
-
+  const [listOptions, setListOptions] = useState(initOptions);
   const handleSubmit = (e: any) => {
     e.preventDefault();
     setIsSubmit(true);
@@ -54,6 +60,28 @@ export default function SignUp() {
     const passwordRule = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^\w\s]).{8,}$/;
     const isValid = passwordRule.test(value);
     setPassword({ ...password, value: e.target.value, valid: isValid });
+  };
+
+  const validateTnC = (e: any) => {
+    const value = e.target.checked;
+    setAgreeTnC(value);
+
+    const newOpt = listOptions;
+    newOpt.forEach((element) => {
+      element.yes = true;
+    });
+    setListOptions(newOpt);
+  };
+
+  const handleOptions = (name: string, type: string) => {
+    const newOpt = listOptions;
+    newOpt.forEach((element) => {
+      if (element.name === name) {
+        type === "yes" ? (element.yes = true) : (element.no = true);
+      }
+    });
+    setListOptions(newOpt);
+    console.log(newOpt, "new options");
   };
 
   return (
@@ -165,6 +193,8 @@ export default function SignUp() {
               <div className="flex text-sm mb-[15px] relative text-[#191919]">
                 <input
                   type="checkbox"
+                  checked={agreeTnC}
+                  onChange={(e) => validateTnC(e)}
                   className="border h-[20px] w-[20px] absolute appearance-none rounded-[3px]
                     shadow-[#1b1b1a]
                    checked:bg-black bg-check-white-svg
@@ -202,6 +232,18 @@ export default function SignUp() {
                   .
                 </span>
               </div>
+              {isSubmit && !agreeTnC && (
+                <p
+                  className={`text-[#c13b2f] text-sm leading-[1.5] margin-0 pt-2 pb-[6px] pl-5 relative ${
+                    password.valid ? "hidden" : "block"
+                  }`}
+                >
+                  <span className="w-[14px] h-[14px] absolute left-0 top-2 bg-err-warning bg-center bg-repeat" />
+                  {
+                    "Please accept the terms and conditions to finish the signup"
+                  }
+                </p>
+              )}
               {/* option list */}
               <div className="pt-2 pb-[15px] pl-[30px]">
                 {/* options */}
@@ -239,7 +281,13 @@ export default function SignUp() {
                   <div className="overflow-auto">
                     {listOptions.map(
                       (
-                        list: { label: string; name: string; link: boolean },
+                        list: {
+                          label: string;
+                          name: string;
+                          link: boolean;
+                          yes: boolean;
+                          no: boolean;
+                        },
                         index: any
                       ) => (
                         <div key={index} className="">
@@ -260,6 +308,10 @@ export default function SignUp() {
                                 <input
                                   id="marketing-yes"
                                   name={list.name}
+                                  checked={list.yes}
+                                  onClick={() =>
+                                    handleOptions(list.name, "yes")
+                                  }
                                   type="radio"
                                   className="bg-white border border-[#c2c2c1] checked:border-[#191919] checked:border-[6px] w-5 h-5 cursor-pointer rounded-[50%] outline-0 appearance-none"
                                 />
@@ -273,6 +325,8 @@ export default function SignUp() {
                                 <input
                                   id="marketing-no"
                                   name={list.name}
+                                  checked={list.no}
+                                  onClick={() => handleOptions(list.name, "no")}
                                   type="radio"
                                   className="bg-white border border-[#c2c2c1] checked:border-[#191919] checked:border-[6px] w-5 h-5 cursor-pointer rounded-[50%] outline-0 appearance-none"
                                 />
