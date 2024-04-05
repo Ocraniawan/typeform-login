@@ -31,14 +31,15 @@ export default function SignUp() {
   const [email, setEmail] = useState({
     value: "",
     valid: true,
-    errMessage: "",
   });
   const [password, setPassword] = useState({
     value: "",
     valid: true,
-    errMessage: "",
   });
-  const [agreeTnC, setAgreeTnC] = useState(false);
+  const [agreeTnC, setAgreeTnC] = useState({
+    value: false,
+    valid: true,
+  });
   const [isSubmit, setIsSubmit] = useState(false);
 
   const [openOptions, setOpenOptions] = useState(false);
@@ -48,6 +49,7 @@ export default function SignUp() {
     e.preventDefault();
     validateEmail(email.value);
     validatePassword(password.value);
+    validateTnC(agreeTnC.value);
     setIsSubmit(true);
   };
 
@@ -63,11 +65,10 @@ export default function SignUp() {
     setPassword({ ...password, value: values, valid: isValid });
   };
 
-  const validateTnC = (e: any) => {
-    const value = e.target.checked;
-    setAgreeTnC(value);
+  const validateTnC = (values: boolean) => {
+    setAgreeTnC({ ...agreeTnC, valid: values, value: values });
 
-    if (value) {
+    if (values) {
       setListOptions((prevOptions) =>
         prevOptions.map((element) => ({ ...element, yes: true, no: false }))
       );
@@ -191,8 +192,8 @@ export default function SignUp() {
               <div className="flex text-sm mb-[15px] relative text-[#191919]">
                 <input
                   type="checkbox"
-                  checked={agreeTnC}
-                  onChange={(e) => validateTnC(e)}
+                  checked={agreeTnC.value}
+                  onChange={(e) => validateTnC(e.target.checked)}
                   className="border h-[20px] w-[20px] absolute appearance-none rounded-[3px]
                     shadow-[#1b1b1a]
                    checked:bg-black bg-check-white-svg
@@ -230,18 +231,14 @@ export default function SignUp() {
                   .
                 </span>
               </div>
-              {isSubmit && !agreeTnC && (
-                <p
-                  className={`text-[#c13b2f] text-sm leading-[1.5] margin-0 pt-2 pb-[6px] pl-5 relative ${
-                    agreeTnC ? "hidden" : "block"
-                  }`}
-                >
-                  <span className="w-[14px] h-[14px] absolute left-0 top-2 bg-err-warning bg-center bg-repeat" />
-                  {
-                    "Please accept the terms and conditions to finish the signup"
-                  }
-                </p>
-              )}
+              <p
+                className={`text-[#c13b2f] text-sm leading-[1.5] margin-0 pt-2 pb-[6px] pl-5 relative ${
+                  agreeTnC.valid ? "hidden" : "block"
+                }`}
+              >
+                <span className="w-[14px] h-[14px] absolute left-0 top-2 bg-err-warning bg-center bg-repeat" />
+                {"Please accept the terms and conditions to finish the signup"}
+              </p>
               {/* option list */}
               <div className="pt-2 pb-[15px] pl-[30px]">
                 {/* options */}
