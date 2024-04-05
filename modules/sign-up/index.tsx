@@ -66,22 +66,21 @@ export default function SignUp() {
     const value = e.target.checked;
     setAgreeTnC(value);
 
-    const newOpt = listOptions;
-    newOpt.forEach((element) => {
-      element.yes = true;
-    });
-    setListOptions(newOpt);
+    if (value) {
+      setListOptions((prevOptions) =>
+        prevOptions.map((element) => ({ ...element, yes: true, no: false }))
+      );
+    }
   };
 
   const handleOptions = (name: string, type: string) => {
-    const newOpt = listOptions;
-    newOpt.forEach((element) => {
-      if (element.name === name) {
-        type === "yes" ? (element.yes = true) : (element.no = true);
-      }
-    });
-    setListOptions(newOpt);
-    console.log(newOpt, "new options");
+    setListOptions((prevOptions) =>
+      prevOptions.map((element) =>
+        element.name === name
+          ? { ...element, yes: type === "yes", no: type !== "yes" }
+          : element
+      )
+    );
   };
 
   return (
