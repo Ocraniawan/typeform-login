@@ -30,12 +30,12 @@ export default function SignUp() {
   const [inputTypePassword, setInputTypePassword] = useState("password");
   const [email, setEmail] = useState({
     value: "",
-    valid: false,
+    valid: true,
     errMessage: "",
   });
   const [password, setPassword] = useState({
     value: "",
-    valid: false,
+    valid: true,
     errMessage: "",
   });
   const [agreeTnC, setAgreeTnC] = useState(false);
@@ -43,23 +43,24 @@ export default function SignUp() {
 
   const [openOptions, setOpenOptions] = useState(false);
   const [listOptions, setListOptions] = useState(initOptions);
+
   const handleSubmit = (e: any) => {
     e.preventDefault();
+    validateEmail(email.value);
+    validatePassword(password.value);
     setIsSubmit(true);
   };
 
-  const validateEmail = (e: any) => {
-    const value = e.target.value;
+  const validateEmail = (values: string) => {
     const emailRule = /^[a-zA-Z0–9._-]+@[a-zA-Z0–9.-]+\.[a-zA-Z]{2,4}$/;
-    const isValid = emailRule.test(value);
-    setEmail({ ...email, value: e.target.value, valid: isValid });
+    const isValid = emailRule.test(values);
+    setEmail({ ...email, value: values, valid: isValid });
   };
 
-  const validatePassword = (e: any) => {
-    const value = e.target.value;
+  const validatePassword = (values: string) => {
     const passwordRule = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^\w\s]).{8,}$/;
-    const isValid = passwordRule.test(value);
-    setPassword({ ...password, value: e.target.value, valid: isValid });
+    const isValid = passwordRule.test(values);
+    setPassword({ ...password, value: values, valid: isValid });
   };
 
   const validateTnC = (e: any) => {
@@ -130,30 +131,30 @@ export default function SignUp() {
                 <span className="w-full h-10 inline-block border rounded-[3px] border-[#c2c2c1]">
                   <input
                     value={email.value}
-                    onChange={(e) => validateEmail(e)}
+                    onChange={(e) => validateEmail(e.target.value)}
+                    onBlur={(e) => validateEmail(e.target.value)}
                     className=" w-full h-full m-0 py-[6px] px-2 rounded-[3px] text-base leading-4 border-none"
                     placeholder="Email"
                     type="text"
                   />
                 </span>
-                {isSubmit && (
-                  <p
-                    className={`text-[#c13b2f] text-sm leading-[1.5] margin-0 pt-2 pb-[6px] pl-5 relative ${
-                      email.valid ? "hidden" : "block"
-                    }`}
-                  >
-                    <span className="w-[14px] h-[14px] absolute left-0 top-2 bg-err-warning bg-center bg-repeat" />
-                    {email.value.length === 0
-                      ? "This field cannot be left blank"
-                      : "Enter a valid email address"}
-                  </p>
-                )}
+                <p
+                  className={`text-[#c13b2f] text-sm leading-[1.5] margin-0 pt-2 pb-[6px] pl-5 relative ${
+                    email.valid ? "hidden" : "block"
+                  }`}
+                >
+                  <span className="w-[14px] h-[14px] absolute left-0 top-2 bg-err-warning bg-center bg-repeat" />
+                  {email.value.length === 0
+                    ? "This field cannot be left blank"
+                    : "Enter a valid email address"}
+                </p>
               </div>
               <div className="mb-[15px]">
                 <div className="flex w-full h-10 border rounded-[3px] border-[#c2c2c1]">
                   <input
                     value={password.value}
-                    onChange={(e) => validatePassword(e)}
+                    onChange={(e) => validatePassword(e.target.value)}
+                    onBlur={(e) => validatePassword(e.target.value)}
                     className="w-full h-full m-0 py-[6px] px-2 rounded-[3px] text-base leading-4 border-none"
                     placeholder="Password"
                     type={inputTypePassword}
@@ -173,18 +174,16 @@ export default function SignUp() {
                     )}
                   </button>
                 </div>
-                {isSubmit && (
-                  <p
-                    className={`text-[#c13b2f] text-sm leading-[1.5] margin-0 pt-2 pb-[6px] pl-5 relative ${
-                      password.valid ? "hidden" : "block"
-                    }`}
-                  >
-                    <span className="w-[14px] h-[14px] absolute left-0 top-2 bg-err-warning bg-center bg-repeat" />
-                    {password.value.length === 0
-                      ? "This field cannot be left blank"
-                      : "Use 8 or more characters with a mix of letters, numbers and symbols"}
-                  </p>
-                )}
+                <p
+                  className={`text-[#c13b2f] text-sm leading-[1.5] margin-0 pt-2 pb-[6px] pl-5 relative ${
+                    password.valid ? "hidden" : "block"
+                  }`}
+                >
+                  <span className="w-[14px] h-[14px] absolute left-0 top-2 bg-err-warning bg-center bg-repeat" />
+                  {password.value.length === 0
+                    ? "This field cannot be left blank"
+                    : "Use 8 or more characters with a mix of letters, numbers and symbols"}
+                </p>
               </div>
             </div>
             <div>
@@ -234,7 +233,7 @@ export default function SignUp() {
               {isSubmit && !agreeTnC && (
                 <p
                   className={`text-[#c13b2f] text-sm leading-[1.5] margin-0 pt-2 pb-[6px] pl-5 relative ${
-                    password.valid ? "hidden" : "block"
+                    agreeTnC ? "hidden" : "block"
                   }`}
                 >
                   <span className="w-[14px] h-[14px] absolute left-0 top-2 bg-err-warning bg-center bg-repeat" />
