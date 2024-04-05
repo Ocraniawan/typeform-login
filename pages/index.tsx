@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import HeadTag from "@/components/head";
 import Header from "@/components/header";
 import SignUp from "@/modules/sign-up";
+import Languages from "@/modules/languages";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -11,9 +12,9 @@ export default function Home() {
       <HeadTag />
       <main className="block">
         <div className="flex">
-          <section className="grid overflow-auto h-full p-0 rounded-[16px 0px 0px 16px] flex-1-1-10 relative min-h-[90vh] w-full">
+          <section className="grid overflow-auto h-full p-0 rounded-t-md rounded-l-md flex-1-1-10 relative min-h-[90vh] w-full">
             <div className="bg-white grid grid-cols-custom grid-rows-custom h-screen w-full relative">
-              <div className="grid-row-1 p-[16px 0 0 24px] grid-area-3-1"></div>
+              <Languages />
               <Header />
               <SignUp />
             </div>
