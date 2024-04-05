@@ -1,6 +1,6 @@
-"use client";
 import React, { useState } from "react";
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
+import { MdError } from "react-icons/md";
 
 const listOptions = [
   {
@@ -21,12 +21,44 @@ const listOptions = [
   },
 ];
 
+const initEmail = {
+  value: "",
+  valid: true,
+  errMessage: "",
+};
+
+const initPwd = {
+  value: "",
+  valid: true,
+  errMessage: "",
+};
+
 export default function SignUp() {
   const [inputTypePassword, setInputTypePassword] = useState("password");
+  const [email, setEmail] = useState(initEmail);
+  const [password, setPassword] = useState(initPwd);
+  const [agreeTnC, setAgreeTnC] = useState(false);
+  const [isSubmit, setIsSubmit] = useState(false);
+
   const [openOptions, setOpenOptions] = useState(false);
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
+    setIsSubmit(true);
+  };
+
+  const validateEmail = (e: any) => {
+    const value = e.target.value;
+    const emailRule = /^[a-zA-Z0–9._-]+@[a-zA-Z0–9.-]+\.[a-zA-Z]{2,4}$/;
+    const isValid = emailRule.test(value);
+    setEmail({ ...email, value: e.target.value, valid: isValid });
+  };
+
+  const validatePassword = (e: any) => {
+    const value = e.target.value;
+    const passwordRule = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^\w\s]).{8,}$/;
+    const isValid = passwordRule.test(value);
+    setPassword({ ...password, value: e.target.value, valid: isValid });
   };
 
   return (
@@ -75,15 +107,29 @@ export default function SignUp() {
               <div className="mb-[15px]">
                 <span className="w-full h-10 inline-block border rounded-[3px] border-[#c2c2c1]">
                   <input
+                    value={email.value}
+                    onChange={(e) => validateEmail(e)}
                     className=" w-full h-full m-0 py-[6px] px-2 rounded-[3px] text-base leading-4 border-none"
                     placeholder="Email"
                     type="email"
                   />
                 </span>
+                <p
+                  className={`text-[#c13b2f] text-sm leading-[1.5] margin-0 pt-2 pb-[6px] pl-5 relative ${
+                    email.valid ? "hidden" : "block"
+                  }`}
+                >
+                  <span className="w-[14px] h-[14px] absolute left-0 top-2 bg-err-warning bg-center bg-repeat" />
+                  {email.value.length === 0
+                    ? "This field cannot be left blank"
+                    : "Enter a valid email address"}
+                </p>
               </div>
               <div className="mb-[15px]">
                 <div className="flex w-full h-10 border rounded-[3px] border-[#c2c2c1]">
                   <input
+                    value={password.value}
+                    onChange={(e) => validatePassword(e)}
                     className="w-full h-full m-0 py-[6px] px-2 rounded-[3px] text-base leading-4 border-none"
                     placeholder="Password"
                     type={inputTypePassword}
@@ -103,6 +149,16 @@ export default function SignUp() {
                     )}
                   </button>
                 </div>
+                <p
+                  className={`text-[#c13b2f] text-sm leading-[1.5] margin-0 pt-2 pb-[6px] pl-5 relative ${
+                    password.valid ? "hidden" : "block"
+                  }`}
+                >
+                  <span className="w-[14px] h-[14px] absolute left-0 top-2 bg-err-warning bg-center bg-repeat" />
+                  {password.value.length === 0
+                    ? "This field cannot be left blank"
+                    : "Use 8 or more characters with a mix of letters, numbers and symbols"}
+                </p>
               </div>
             </div>
             <div>

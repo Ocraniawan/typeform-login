@@ -9,6 +9,9 @@ module.exports = {
       transitionProperty: {
         "max-height": "max-height",
       },
+      backgroundImage: {
+        "err-warning": "url('/images/warning.svg')",
+      },
     },
   },
 };
