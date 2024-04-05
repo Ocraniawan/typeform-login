@@ -60,7 +60,7 @@ export default function Languages() {
               ></path>
             </svg>
           </div>
-          <span className="text-sm leading-[1.5] font-normal text-[#a0a0a0]">
+          <span className="text-sm leading-[1.5] font-normal text-[#5e5e5e]">
             {languages}
           </span>
           <div className="ml-1">

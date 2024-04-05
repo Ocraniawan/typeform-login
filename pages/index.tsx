@@ -36,7 +36,7 @@ export default function Home() {
             </div>
           </section>
           <section className="lg:ml-[-16px] grid overflow-auto h-full p-0 rounded-t-2xl rounded-l-2xl flex-1-1-10 relative min-h-[90vh] w-full">
-            <div className="bg-white grid grid-cols-custom grid-rows-custom h-screen w-full relative">
+            <div className="bg-white grid grid-cols-custom grid-rows-custom h-full w-full relative">
               <Languages />
               <Header />
               <SignUp />
