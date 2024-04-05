@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
-import { MdError } from "react-icons/md";
 
 const listOptions = [
   {
@@ -21,22 +20,18 @@ const listOptions = [
   },
 ];
 
-const initEmail = {
-  value: "",
-  valid: true,
-  errMessage: "",
-};
-
-const initPwd = {
-  value: "",
-  valid: true,
-  errMessage: "",
-};
-
 export default function SignUp() {
   const [inputTypePassword, setInputTypePassword] = useState("password");
-  const [email, setEmail] = useState(initEmail);
-  const [password, setPassword] = useState(initPwd);
+  const [email, setEmail] = useState({
+    value: "",
+    valid: false,
+    errMessage: "",
+  });
+  const [password, setPassword] = useState({
+    value: "",
+    valid: false,
+    errMessage: "",
+  });
   const [agreeTnC, setAgreeTnC] = useState(false);
   const [isSubmit, setIsSubmit] = useState(false);
 
@@ -111,19 +106,21 @@ export default function SignUp() {
                     onChange={(e) => validateEmail(e)}
                     className=" w-full h-full m-0 py-[6px] px-2 rounded-[3px] text-base leading-4 border-none"
                     placeholder="Email"
-                    type="email"
+                    type="text"
                   />
                 </span>
-                <p
-                  className={`text-[#c13b2f] text-sm leading-[1.5] margin-0 pt-2 pb-[6px] pl-5 relative ${
-                    email.valid ? "hidden" : "block"
-                  }`}
-                >
-                  <span className="w-[14px] h-[14px] absolute left-0 top-2 bg-err-warning bg-center bg-repeat" />
-                  {email.value.length === 0
-                    ? "This field cannot be left blank"
-                    : "Enter a valid email address"}
-                </p>
+                {isSubmit && (
+                  <p
+                    className={`text-[#c13b2f] text-sm leading-[1.5] margin-0 pt-2 pb-[6px] pl-5 relative ${
+                      email.valid ? "hidden" : "block"
+                    }`}
+                  >
+                    <span className="w-[14px] h-[14px] absolute left-0 top-2 bg-err-warning bg-center bg-repeat" />
+                    {email.value.length === 0
+                      ? "This field cannot be left blank"
+                      : "Enter a valid email address"}
+                  </p>
+                )}
               </div>
               <div className="mb-[15px]">
                 <div className="flex w-full h-10 border rounded-[3px] border-[#c2c2c1]">
@@ -149,16 +146,18 @@ export default function SignUp() {
                     )}
                   </button>
                 </div>
-                <p
-                  className={`text-[#c13b2f] text-sm leading-[1.5] margin-0 pt-2 pb-[6px] pl-5 relative ${
-                    password.valid ? "hidden" : "block"
-                  }`}
-                >
-                  <span className="w-[14px] h-[14px] absolute left-0 top-2 bg-err-warning bg-center bg-repeat" />
-                  {password.value.length === 0
-                    ? "This field cannot be left blank"
-                    : "Use 8 or more characters with a mix of letters, numbers and symbols"}
-                </p>
+                {isSubmit && (
+                  <p
+                    className={`text-[#c13b2f] text-sm leading-[1.5] margin-0 pt-2 pb-[6px] pl-5 relative ${
+                      password.valid ? "hidden" : "block"
+                    }`}
+                  >
+                    <span className="w-[14px] h-[14px] absolute left-0 top-2 bg-err-warning bg-center bg-repeat" />
+                    {password.value.length === 0
+                      ? "This field cannot be left blank"
+                      : "Use 8 or more characters with a mix of letters, numbers and symbols"}
+                  </p>
+                )}
               </div>
             </div>
             <div>
