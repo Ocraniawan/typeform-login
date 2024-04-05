@@ -178,7 +178,7 @@ export default function SignUp() {
                 {/* list */}
                 <div
                   className={`overflow-hidden transition-[max-height] delay-200 ease-in ${
-                    openOptions ? "max-h-0" : "max-h-[360px]"
+                    !openOptions ? "max-h-0" : "max-h-[360px]"
                   } `}
                 >
                   <div className="overflow-auto">
