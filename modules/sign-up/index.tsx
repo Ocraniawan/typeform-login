@@ -30,7 +30,7 @@ export default function SignUp() {
   };
 
   return (
-    <div className="flex flex-col justify-center justify-self-center items-center max-w-[255px] grid-area-2">
+    <div className="md:max-w-[542px] max-w-[256px] flex flex-col justify-center justify-self-center items-center grid-area-2">
       <div className="flex items-center justify-center h-[80px]">
         <a className="bg-transparent" href="#">
           <div className="flex">
@@ -67,7 +67,7 @@ export default function SignUp() {
       <h2 className="text-center text-2xl font-[200] text-[#5e5e5e] mb-6 leading-9">
         Get better data with conversational forms, surveys, quizzes & more.
       </h2>
-      <div className="w-full">
+      <div className="md:max-w-[256px] w-full">
         <main className="block">
           <form onSubmit={handleSubmit}>
             {/* input */}
@@ -157,7 +157,7 @@ export default function SignUp() {
                   <p className="text-sm">See Options</p>
                   <span
                     className={`transition-all delay-200 ease-out ${
-                      openOptions ? "rotate-180" : "rotate-0"
+                      !openOptions ? "rotate-180" : "rotate-0"
                     }`}
                   >
                     <svg
