@@ -161,6 +161,8 @@ export default function SignUp() {
                     type={inputTypePassword}
                   />
                   <button
+                    role="button"
+                    aria-label="view-pwd"
                     className="px-2 text-[#D2D5C4]"
                     onClick={() =>
                       setInputTypePassword(
@@ -192,6 +194,7 @@ export default function SignUp() {
               <div className="flex text-sm mb-[15px] relative text-[#191919]">
                 <input
                   type="checkbox"
+                  id="agreeTnC"
                   checked={agreeTnC.value}
                   onChange={(e) => validateTnC(e.target.checked)}
                   className="border h-[20px] w-[20px] absolute appearance-none rounded-[3px]
@@ -200,7 +203,7 @@ export default function SignUp() {
                     focus:ring-1 focus:ring-offset-2 focus:ring-white
                     transition-colors duration-150 ease-in-out"
                 />
-                <span className=" pl-[30px]">
+                <label htmlFor="agreeTnC" className="pl-[30px]">
                   {"I agree to Typeform’s "}
                   <a
                     rel="noopener"
@@ -229,7 +232,7 @@ export default function SignUp() {
                     Data Processing Agreement
                   </a>
                   .
-                </span>
+                </label>
               </div>
               <p
                 className={`text-[#c13b2f] text-sm leading-[1.5] margin-0 pt-2 pb-[6px] pl-5 relative ${
@@ -301,7 +304,7 @@ export default function SignUp() {
                             <div>
                               <label className="items-center cursor-pointer inline-flex">
                                 <input
-                                  id="marketing-yes"
+                                  id={`${list.name}-selected-yes`}
                                   name={list.name}
                                   checked={list.yes}
                                   onClick={() =>
@@ -311,14 +314,19 @@ export default function SignUp() {
                                   className="bg-white border border-[#c2c2c1] checked:border-[#191919] checked:border-[6px] w-5 h-5 cursor-pointer rounded-[50%] outline-0 appearance-none"
                                 />
                                 <div className="ml-3">
-                                  <p className="text-sm mr-4 pt-[2px]">Yes</p>
+                                  <label
+                                    className="text-sm mr-4 pt-[2px]"
+                                    htmlFor={`${list.name}-selected-yes`}
+                                  >
+                                    Yes
+                                  </label>
                                 </div>
                               </label>
                             </div>
                             <div>
                               <label className="items-center cursor-pointer inline-flex">
                                 <input
-                                  id="marketing-no"
+                                  id={`${list.name}-selected-no`}
                                   name={list.name}
                                   checked={list.no}
                                   onClick={() => handleOptions(list.name, "no")}
@@ -326,7 +334,12 @@ export default function SignUp() {
                                   className="bg-white border border-[#c2c2c1] checked:border-[#191919] checked:border-[6px] w-5 h-5 cursor-pointer rounded-[50%] outline-0 appearance-none"
                                 />
                                 <div className="ml-3">
-                                  <p className="text-sm mr-4 pt-[2px]">No</p>
+                                  <label
+                                    className="text-sm mr-4 pt-[2px]"
+                                    htmlFor={`${list.name}-selected-no`}
+                                  >
+                                    No
+                                  </label>
                                 </div>
                               </label>
                             </div>
