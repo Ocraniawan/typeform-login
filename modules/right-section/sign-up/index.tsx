@@ -1,3 +1,4 @@
+import { EmailValidation, PasswordValidation } from "@/utils";
 import React, { useState } from "react";
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 
@@ -54,15 +55,15 @@ export default function SignUp() {
   };
 
   const validateEmail = (values: string) => {
-    const emailRule = /^[a-zA-Z0–9._-]+@[a-zA-Z0–9.-]+\.[a-zA-Z]{2,4}$/;
-    const isValid = emailRule.test(values);
-    setEmail({ ...email, value: values, valid: isValid });
+    setEmail({ ...email, value: values, valid: EmailValidation(values) });
   };
 
   const validatePassword = (values: string) => {
-    const passwordRule = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^\w\s]).{8,}$/;
-    const isValid = passwordRule.test(values);
-    setPassword({ ...password, value: values, valid: isValid });
+    setPassword({
+      ...password,
+      value: values,
+      valid: PasswordValidation(values),
+    });
   };
 
   const validateTnC = (values: boolean) => {
