@@ -55,3 +55,8 @@ body {
 .bg-check-white-svg {
   background: url("/assets/white-checked.svg") 50% 4px no-repeat;
 }
+
+.transform-lang {
+  transition: transform 150ms ease-in 0s, opacity 150ms ease-in 0s,
+    visibility 150ms ease-in 0s;
+}

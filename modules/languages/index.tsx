@@ -9,11 +9,14 @@ export default function Languages() {
       <div className="relative">
         <div
           role="menu"
-          className={`bg-white rounded-lg shadow-[rgba(25,25,25,0.12)_0px_2px_5px_0.5px] 
-          py-2 absolute z-10 transform-origin-bottom-left will-change-transform will-change-opacity
-          transition-all ease-in delay-150
-          top-8 pointer-events-auto opacity-[1] scale-1
-          ${displayList ? "visible" : "hidden"}`}
+          className={`transform-lang bg-white rounded-lg shadow-[rgba(25,25,25,0.12)_0px_2px_5px_0.5px] 
+          py-2 absolute z-10 origin-bottom-left will-change-[left,bottom]
+          top-8 
+          ${
+            displayList
+              ? "visible opacity-[1] scale-100 pointer-events-auto"
+              : "hidden opacity-0 pointer-events-none scale-90"
+          }`}
         >
           <a
             href="#"
